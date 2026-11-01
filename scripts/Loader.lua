@@ -13,7 +13,7 @@ end)
 -- Optional: getgenv().MULTI_HUB_URLS can override these URLs.
 -- ============================================================
 local SCRIPT_URLS = {
-    PS99 = "https://raw.githubusercontent.com/levox00/ps/main/scripts/Petals_Hub.lua",
+    PS99 = "https://raw.githubusercontent.com/levox00/ps/refs/heads/main/scripts/PetSim99.lua",
     MurderMystery2 = "",
     BloxFruits = "",
     AdoptMe = "",
