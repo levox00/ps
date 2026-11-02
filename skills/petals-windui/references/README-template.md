@@ -11,21 +11,52 @@ Use this as the common structure for a **new** game-specific Petals Hub UI. Repl
 - **Layout:** topbar with normal WindUI window controls; left sidebar for tabs; main content on the right. The background lies underneath content; optional decorative overlay stays clipped to the UI. The minimized button uses the same themed logo and is draggable.
 - **Features:** `[user-selected features or none]`; Overview and Settings still exist for a UI-only script.
 
-## Overview – order and exact copy
+## Overview – exact visible hierarchy
 
-1. **`Petals Hub`** and immediately underneath the current game name, e.g. `Game: [game name]`.
-2. **`Latest Update`**: real current version/date if known and a concise, accurate list of what was added or changed. If no update details are supplied, ask or state that no update details were supplied; never invent features.
-3. **`Show / Hide Hub`**:  
-   `Press F8 or Right Control to show or hide Petals Hub. The shortcut also moves the window back to the center of the screen.`
-4. **`Community`**:  
-   `Need help or want a premium key? Join our Discord for support, updates and premium information.`  
-   Place the **`Copy Discord Invite`** action immediately below, followed by the visible invite `discord.gg/qktbuBpkY6`. The action copies the invite, with a graceful fallback if clipboard access is unavailable. Do not imply an unverified premium purchase link.
+Create each named heading as a separate visible, expanded WindUI **section**, not merely as the title of a paragraph or as plain body text. Place the listed controls inside their section. Keep their order, including the repeated names used both as a section heading and as a row title:
 
-## Settings – order
+```text
+Overview [tab: layout-dashboard]
+├─ Petals Hub [section heading]
+│  ├─ Game [paragraph title]
+│  │  └─ Blade Ball [paragraph description: substitute the actual game name]
+│  └─ Latest Update [paragraph title]
+│     └─ [actual version and changes, or state details were not supplied]
+├─ Show / Hide Hub [section heading]
+│  └─ Show / Hide Hub [paragraph title]
+│     └─ Press F8 or Right Control to show or hide Petals Hub. The shortcut also moves the window back to the center of the screen. [description]
+└─ Community [section heading]
+   ├─ Community [paragraph title]
+   │  └─ Need help or want a premium key? Join our Discord for support, updates and premium information. [description]
+   ├─ Copy Discord Invite [button]
+   └─ discord.gg/qktbuBpkY6 [visible label]
+```
 
-1. **`Appearance`**: `Background image transparency` controls the background image only; `UI surface transparency` controls the panel, nested feature and section surfaces, selected/hovered sidebar, dropdown menu and selected dropdown options. The layers get progressively less transparent toward the foreground; text and icons remain readable. Values move in the same direction and are clamped between 0% and 100%.
-2. **`Diagnostics`**: `Copy Full Debug Report`, `Save Debug Report to File`, `Clear Hub Log`. Redact sensitive values and provide capability fallbacks.
-3. **`Session`**: `Stop and Close Hub`. The top-right X must run the same shutdown. No saved-profile controls or interface-theme selector by default.
+For example, for Blade Ball the visible content is a `Petals Hub` heading, then a row titled `Game` whose description is exactly `Blade Ball`. Do not make `Petals Hub` the row title, do not make `Game: Blade Ball` its description, and do not omit the heading. `Latest Update` is a separate paragraph within `Petals Hub`, not a replacement for that heading. Include only real release details. The Discord button copies the invite, with a graceful fallback if clipboard access is unavailable; do not imply an unverified premium purchase link. Game-specific sections may follow `Community` when requested.
+
+Use the fork's actual section/container API, for example `Overview:Section({Title = "Petals Hub", Opened = true, Box = false})` and its `:Paragraph({Title = "Game", Desc = gameName})`; create separate `Show / Hide Hub` and `Community` sections the same way. Verify that the headings render visibly and that the controls are children of their intended sections; do not rely on a flat list of paragraphs or a group without a visible heading. Adapt only if the checked fork API differs.
+
+## Settings – exact visible hierarchy
+
+Create three separate visible, expanded sections in the same style as Overview; they are headings, not control titles. Keep the controls nested and ordered as follows:
+
+```text
+Settings [tab: settings]
+├─ Appearance [section heading]
+│  ├─ Background image transparency [slider]
+│  └─ UI surface transparency [slider]
+├─ Diagnostics [section heading]
+│  ├─ Copy Full Debug Report [button]
+│  ├─ Save Debug Report to File [button]
+│  ├─ Clear Hub Log [button]
+│  └─ Hub log [status paragraph, if a visible log is implemented]
+└─ Session [section heading]
+   └─ Stop and Close Hub [button]
+```
+
+Use separate section objects such as `Settings:Section({Title = "Appearance", Opened = true, Box = false})` and add each slider to its section rather than to the tab. Create `Diagnostics` and `Session` similarly and place their controls within them. Do not hide these headings or require opening a collapsed section to discover its controls. Only add game-specific session actions if requested or already present in an existing project.
+
+`Background image transparency` controls only the background image. `UI surface transparency` controls the panel, nested feature and section surfaces, selected/hovered sidebar, dropdown menu and selected dropdown options. Layers get progressively less transparent toward the foreground; text and icons remain readable. Both values move in the same direction and are clamped between 0% and 100%. Diagnostics must redact sensitive values and provide capability fallbacks. The top-right X must run the same shutdown as `Stop and Close Hub`. Do not add saved-profile controls or an interface-theme selector by default.
 
 ## First-run Discord popup
 
