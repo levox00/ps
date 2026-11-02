@@ -1,0 +1,4 @@
+interface:
+  display_name: "Petals WindUI"
+  short_description: "Neue Petals-Hub-UIs für Roblox-Spiele erstellen"
+  default_prompt: "Erstelle eine neue Petals-Hub-UI mit meinem Silk-WindUI-Fork."
