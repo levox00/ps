@@ -21,7 +21,7 @@ Overview [tab: layout-dashboard]
 │  ├─ Game [paragraph title]
 │  │  └─ Blade Ball [paragraph description: substitute the actual game name]
 │  └─ Latest Update [paragraph title]
-│     └─ [actual version and changes, or state details were not supplied]
+│     └─ [actual script version, e.g. v1.0.0; add a brief note only for a verified major new event or feature]
 ├─ Show / Hide Hub [section heading]
 │  └─ Show / Hide Hub [paragraph title]
 │     └─ Press F8 or Right Control to show or hide Petals Hub. The shortcut also moves the window back to the center of the screen. [description]
@@ -32,7 +32,7 @@ Overview [tab: layout-dashboard]
    └─ discord.gg/qktbuBpkY6 [visible label]
 ```
 
-For example, for Blade Ball the visible content is a `Petals Hub` heading, then a row titled `Game` whose description is exactly `Blade Ball`. Do not make `Petals Hub` the row title, do not make `Game: Blade Ball` its description, and do not omit the heading. `Latest Update` is a separate paragraph within `Petals Hub`, not a replacement for that heading. Include only real release details. The Discord button copies the invite, with a graceful fallback if clipboard access is unavailable; do not imply an unverified premium purchase link. Game-specific sections may follow `Community` when requested.
+For example, for Blade Ball the visible content is a `Petals Hub` heading, then a row titled `Game` whose description is exactly `Blade Ball`. Do not make `Petals Hub` the row title, do not make `Game: Blade Ball` its description, and do not omit the heading. `Latest Update` is a separate paragraph within `Petals Hub`, not a replacement for that heading. Always display the actual script version in the description, normally by itself. Add a concise note only for a verified major update, such as a new event or an entirely new feature; omit routine changes and general update summaries. Use the existing version or establish an initial version for a new script; do not invent a version for an existing script or fabricate update details. The Discord button copies the invite, with a graceful fallback if clipboard access is unavailable; do not imply an unverified premium purchase link. Game-specific sections may follow `Community` when requested.
 
 Use the fork's actual section/container API, for example `Overview:Section({Title = "Petals Hub", Opened = true, Box = false})` and its `:Paragraph({Title = "Game", Desc = gameName})`; create separate `Show / Hide Hub` and `Community` sections the same way. Verify that the headings render visibly and that the controls are children of their intended sections; do not rely on a flat list of paragraphs or a group without a visible heading. Adapt only if the checked fork API differs.
 
