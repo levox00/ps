@@ -23,7 +23,8 @@ local SCRIPT_URLS = {
     AdoptMe = "",
     Nights99 = "",
     Rivals = "",
-    BladeBall = "",
+    BladeBall = "https://raw.githubusercontent.com/levox00/ps/refs/heads/main/scripts/BladeBall.luau",
+    
 }
 
 -- Place and universe routing; edit SCRIPT_URLS above to change scripts.
