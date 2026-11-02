@@ -6,8 +6,8 @@ Use this as the common structure for a **new** game-specific Petals Hub UI. Repl
 
 - **Game:** `[game name]` (ask the user).
 - **Window header:** game name on top, `Petals Hub` beneath it; themed Petals logo at the left.
-- **Theme:** `[chosen color and palette]`; user may request an anime character, outfit, background and optional petal overlay.
-- **Icons:** always use Lucide `layout-dashboard` for Overview and `settings` for Settings; ask whether Lucide is desired for the other controls. The logo stays the Petals mark, tinted to the chosen theme unless the user chooses a different treatment.
+- **Theme:** `[chosen color and palette]`. Ask for character preferences, including gender, outfit, pose and style. Default to a newly generated 2D anime character; honor a different character, a provided reference or no character. Generate a fresh coordinated background with petals in the chosen palette for each game UI, plus a matching transparent petal overlay if requested. Do not reuse the PetSim background or overlay.
+- **Icons:** always use Lucide `layout-dashboard` for Overview and `settings` for Settings; ask whether Lucide is desired for the other controls. Use only the transparent [Petals logo](https://github.com/levox00/ps/blob/main/assets/petals-logo-transparent.png) from the asset repository. Recolor it to the chosen palette while preserving its design, geometry and transparency; do not otherwise alter it unless explicitly requested.
 - **Layout:** topbar with normal WindUI window controls; left sidebar for tabs; main content on the right. The background lies underneath content; optional decorative overlay stays clipped to the UI. The minimized button uses the same themed logo and is draggable.
 - **Features:** `[user-selected features or none]`; Overview and Settings still exist for a UI-only script.
 
@@ -42,4 +42,4 @@ Use this as the common structure for a **new** game-specific Petals Hub UI. Repl
 
 ## Implementation and validation
 
-Use the user's Silk-WindUI fork. Load its currently verified pinned version; do not assume a mutable main branch is stable. Use its `SetBackgroundImageTransparency` and `SetUITransparency` APIs when present and preserve transparent PNG alpha. Do not modify unrelated UI or silently implement features. Test the real UI controls and dropdown states, cleanup/re-execution, keyboard and touch when possible; label simulated and compilation checks separately from live Roblox/Delta verification.
+Use the user's Silk-WindUI fork as an image-free base. Configure newly generated background and overlay assets in the game script rather than the library. Load its currently verified pinned version; do not assume a mutable main branch is stable. Use its `SetBackgroundImageTransparency` and `SetUITransparency` APIs when present and preserve transparent PNG alpha. Do not modify unrelated UI or silently implement features. Test the real UI controls and dropdown states, cleanup/re-execution, keyboard and touch when possible; label simulated and compilation checks separately from live Roblox/Delta verification.
