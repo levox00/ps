@@ -12,8 +12,12 @@ end)
 -- Leave an empty string when no script is available yet.
 -- Optional: getgenv().MULTI_HUB_URLS can override these URLs.
 -- ============================================================
+-- Change this when Fake an Egg moves to a new place.
+local FAKE_AN_EGG_PLACE_ID = 97289366402005
+
 local SCRIPT_URLS = {
     PS99 = "https://raw.githubusercontent.com/levox00/ps/refs/heads/main/scripts/PetSim99.lua",
+    FakeAnEgg = "https://raw.githubusercontent.com/levox00/ps/refs/heads/main/scripts/Fake%20and%20Egg.lua",
     MurderMystery2 = "",
     BloxFruits = "",
     AdoptMe = "",
@@ -35,6 +39,7 @@ local ROUTES = {
             [93869716229773] = true, [82075097396409] = true, -- Halloween minigames
         },
     },
+    FakeAnEgg = { places = { [FAKE_AN_EGG_PLACE_ID] = true } },
     MurderMystery2 = { places = { [142823291] = true }, universes = { [66654135] = true } },
     BloxFruits = { places = { [2753915549] = true, [4442272183] = true, [7449423635] = true }, universes = { [994732206] = true } },
     AdoptMe = { places = { [920587237] = true }, universes = { [383310974] = true } },
