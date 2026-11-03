@@ -1,12 +1,26 @@
 -- Mapped games use the URLs below; other scripts can use a first-line
 -- `-- PlaceId: <root place id>` header for automatic discovery.
 -- Publish this file and the corresponding game scripts to levox00/ps separately.
-local GAMES = {
-    [13772394625] = "https://raw.githubusercontent.com/levox00/ps/main/scripts/BladeBall.luau",
-    [8737899170] = "https://raw.githubusercontent.com/levox00/ps/main/scripts/PetSim99.lua",
-    [97289366402005] = "https://raw.githubusercontent.com/levox00/ps/main/scripts/Fake%20and%20Egg.lua",
-    -- [MAIN_PLACE_ID] = "https://raw.githubusercontent.com/owner/repo/main/scripts/Game.lua",
+-- Game name -> script URL. Keep these keys consistent with MAIN_PLACES below.
+local SCRIPT_URLS = {
+    BladeBall = "https://raw.githubusercontent.com/levox00/ps/main/scripts/BladeBall.luau",
+    PetSim99 = "https://raw.githubusercontent.com/levox00/ps/main/scripts/PetSim99.lua",
+    FakeAnEgg = "https://raw.githubusercontent.com/levox00/ps/main/scripts/Fake%20and%20Egg.lua",
 }
+
+-- Main/root Place ID -> game name. Sub-places are resolved by the Roblox API.
+local MAIN_PLACES = {
+    [13772394625] = "BladeBall",
+    [8737899170] = "PetSim99",
+    [97289366402005] = "FakeAnEgg",
+}
+
+local GAMES = {}
+for placeId, name in pairs(MAIN_PLACES) do
+    local url = SCRIPT_URLS[name]
+    assert(type(url) == "string" and url ~= "", "[Petals Loader] Missing script URL for " .. tostring(name))
+    GAMES[placeId] = url
+end
 
 local HttpService = game:GetService("HttpService")
 local API = "https://api.github.com/repos/levox00/ps/git/trees/main?recursive=1"
