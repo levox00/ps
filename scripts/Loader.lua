@@ -4,6 +4,7 @@
 -- Game name -> script URL. Keep these keys consistent with MAIN_PLACES below.
 local THROW_FOOD_PLACE_ID = 120219252362013
 local SCRIPT_URLS = {
+    BreakAndStealAnEgg = "https://raw.githubusercontent.com/levox00/ps/main/scripts/Break%20and%20Steal%20an%20Egg.lua",
     BladeBall = "https://raw.githubusercontent.com/levox00/ps/main/scripts/BladeBall.luau",
     PetSim99 = "https://raw.githubusercontent.com/levox00/ps/main/scripts/PetSim99.lua",
     FakeAnEgg = "https://raw.githubusercontent.com/levox00/ps/main/scripts/Fake%20and%20Egg.lua",
@@ -12,6 +13,7 @@ local SCRIPT_URLS = {
 
 -- Main/root Place ID -> game name. Sub-places are resolved by the Roblox API.
 local MAIN_PLACES = {
+    [114326934417838] = "BreakAndStealAnEgg",
     [13772394625] = "BladeBall",
     [8737899170] = "PetSim99",
     [97289366402005] = "FakeAnEgg",
@@ -55,6 +57,10 @@ local function rawUrl(path)
 end
 
 local function execute(source, name)
+    if source:match("^%-%- PETALS_SCRIPT_PENDING") then
+        warn("[Petals Loader] This game script is not released yet.")
+        return
+    end
     if type(loadstring) ~= "function" then
         error("[Petals Loader] This executor does not support loadstring.", 0)
     end
