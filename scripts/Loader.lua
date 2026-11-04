@@ -2,10 +2,12 @@
 -- `-- PlaceId: <root place id>` header for automatic discovery.
 -- Publish this file and the corresponding game scripts to levox00/ps separately.
 -- Game name -> script URL. Keep these keys consistent with MAIN_PLACES below.
+local THROW_FOOD_PLACE_ID = 120219252362013
 local SCRIPT_URLS = {
     BladeBall = "https://raw.githubusercontent.com/levox00/ps/main/scripts/BladeBall.luau",
     PetSim99 = "https://raw.githubusercontent.com/levox00/ps/main/scripts/PetSim99.lua",
     FakeAnEgg = "https://raw.githubusercontent.com/levox00/ps/main/scripts/Fake%20and%20Egg.lua",
+    ThrowFoodForAnimals = "https://raw.githubusercontent.com/levox00/ps/main/scripts/Throw%20Food%20For%20Animals%20v1.1.7.lua",
 }
 
 -- Main/root Place ID -> game name. Sub-places are resolved by the Roblox API.
@@ -13,6 +15,7 @@ local MAIN_PLACES = {
     [13772394625] = "BladeBall",
     [8737899170] = "PetSim99",
     [97289366402005] = "FakeAnEgg",
+    [THROW_FOOD_PLACE_ID] = "ThrowFoodForAnimals",
 }
 
 local GAMES = {}

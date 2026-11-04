@@ -43,6 +43,8 @@ Create three separate visible, expanded sections in the same style as Overview; 
 ```text
 Settings [tab: settings]
 ├─ Appearance [section heading]
+│  ├─ Show Background Image [toggle; default on, when background exists]
+│  ├─ Show Decorative Overlay [toggle; default on, when overlay exists]
 │  ├─ Background image transparency [slider]
 │  └─ UI surface transparency [slider]
 ├─ Diagnostics [section heading]
@@ -55,6 +57,8 @@ Settings [tab: settings]
 ```
 
 Use separate section objects such as `Settings:Section({Title = "Appearance", Opened = true, Box = false})` and add each slider to its section rather than to the tab. Create `Diagnostics` and `Session` similarly and place their controls within them. Do not hide these headings or require opening a collapsed section to discover its controls. Only add game-specific session actions if requested or already present in an existing project.
+
+The two visibility toggles are independent and default to on. Hide or restore only their own layer, preserving its prior transparency; persist the choices. Omit the corresponding toggle if that asset was explicitly omitted.
 
 `Background image transparency` controls only the background image when enabled; omit the background-specific slider when the background is disabled. `UI surface transparency` controls the panel, nested feature and section surfaces, selected/hovered sidebar, dropdown menu and selected dropdown options. Layers get progressively less transparent toward the foreground; text and icons remain readable. Both values move in the same direction and are clamped between 0% and 100%. Diagnostics must redact sensitive values and provide capability fallbacks. The top-right X must run the same shutdown as `Stop and Close Hub`. Do not add saved-profile controls or an interface-theme selector by default.
 
