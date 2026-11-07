@@ -3,18 +3,26 @@
 -- Publish this file and the corresponding game scripts to levox00/ps separately.
 -- Game name -> script URL. Keep these keys consistent with MAIN_PLACES below.
 local THROW_FOOD_PLACE_ID = 120219252362013
+local ARENA_SNIPER_PLACE_ID = 122446657157717
+local ARENA_SNIPER_UNIVERSE_ID = 9534705677
 local SCRIPT_URLS = {
     BreakAndStealAnEgg = "https://raw.githubusercontent.com/levox00/ps/main/scripts/Break%20and%20Steal%20an%20Egg.lua",
     BladeBall = "https://raw.githubusercontent.com/levox00/ps/main/scripts/BladeBall.luau",
+    ArenaSniper = "https://raw.githubusercontent.com/levox00/ps/main/scripts/Arena%20Sniper.lua",
     PetSim99 = "https://raw.githubusercontent.com/levox00/ps/main/scripts/PetSim99.lua",
     FakeAnEgg = "https://raw.githubusercontent.com/levox00/ps/main/scripts/Fake%20and%20Egg.lua",
     ThrowFoodForAnimals = "https://raw.githubusercontent.com/levox00/ps/main/scripts/Throw%20Food%20For%20Animals%20v1.1.7.lua",
 }
 
+-- The URL is editable above and exposed to this executor session for continuation.
+local environment = (type(getgenv) == "function" and getgenv()) or _G
+pcall(function() environment.PETALS_ARENA_SNIPER_SCRIPT_URL = SCRIPT_URLS.ArenaSniper end)
+
 -- Main/root Place ID -> game name. Sub-places are resolved by the Roblox API.
 local MAIN_PLACES = {
     [114326934417838] = "BreakAndStealAnEgg",
     [13772394625] = "BladeBall",
+    [ARENA_SNIPER_PLACE_ID] = "ArenaSniper",
     [8737899170] = "PetSim99",
     [97289366402005] = "FakeAnEgg",
     [THROW_FOOD_PLACE_ID] = "ThrowFoodForAnimals",
@@ -70,7 +78,8 @@ local function execute(source, name)
 end
 
 if not game:IsLoaded() then game.Loaded:Wait() end
-local directUrl = GAMES[game.PlaceId]
+-- Sniper Arena moves between several places in the same universe.
+local directUrl = GAMES[game.PlaceId] or (game.GameId == ARENA_SNIPER_UNIVERSE_ID and SCRIPT_URLS.ArenaSniper)
 if directUrl then
     return execute(get(directUrl, "mapped script"), directUrl)
 end
