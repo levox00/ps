@@ -13,6 +13,8 @@ Use this as the common structure for a **new** game-specific Petals Hub UI. Repl
 
 ## Overview – exact visible hierarchy
 
+On every new execution, explicitly select Overview as the initial tab and ensure its content is visible; for the checked Silk fork, use `Overview:Select()`. Preserve the user’s selected tab during normal navigation and minimize/reopen. Verify both a fresh start and re-execution.
+
 Create each named heading as a separate visible, expanded WindUI **section**, not merely as the title of a paragraph or as plain body text. Place the listed controls inside their section. Keep their order, including the repeated names used both as a section heading and as a row title:
 
 ```text
