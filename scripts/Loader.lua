@@ -2,6 +2,7 @@
 -- `-- PlaceId: <root place id>` header for automatic discovery.
 -- Publish this file and the corresponding game scripts to levox00/ps separately.
 -- Game name -> script URL. Keep these keys consistent with MAIN_PLACES below.
+local FAKE_AN_EGG_PLACE_ID = 97289366402005
 local THROW_FOOD_PLACE_ID = 120219252362013
 local ARENA_SNIPER_PLACE_ID = 122446657157717
 local ARENA_SNIPER_UNIVERSE_ID = 9534705677
@@ -24,7 +25,7 @@ local MAIN_PLACES = {
     [13772394625] = "BladeBall",
     [ARENA_SNIPER_PLACE_ID] = "ArenaSniper",
     [8737899170] = "PetSim99",
-    [97289366402005] = "FakeAnEgg",
+    [FAKE_AN_EGG_PLACE_ID] = "FakeAnEgg",
     [THROW_FOOD_PLACE_ID] = "ThrowFoodForAnimals",
 }
 
