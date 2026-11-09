@@ -12,7 +12,7 @@ local SCRIPT_URLS = {
     ArenaSniper = "https://raw.githubusercontent.com/levox00/ps/main/scripts/Arena%20Sniper.lua",
     PetSim99 = "https://raw.githubusercontent.com/levox00/ps/main/scripts/PetSim99.lua",
     FakeAnEgg = "https://raw.githubusercontent.com/levox00/ps/main/scripts/Fake%20and%20Egg.lua",
-    ThrowFoodForAnimals = "https://raw.githubusercontent.com/levox00/ps/main/scripts/Throw%20Food%20For%20Animals%20v1.1.7.lua",
+    ThrowFoodForAnimals = "https://raw.githubusercontent.com/levox00/ps/main/scripts/Throw%20Food%20For%20Animals.lua",
 }
 
 -- The URL is editable above and exposed to this executor session for continuation.
