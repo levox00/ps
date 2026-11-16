@@ -8,7 +8,9 @@ Use this as the common structure for a **new** game-specific Petals Hub UI. Repl
 - **Window header:** game name on top, `Petals Hub` beneath it; themed Petals logo at the left when enabled.
 - **Theme and assets:** `[chosen color and palette]` is required; ask for the color if missing. Background, overlay, logo and character are independent enabled defaults; honor each explicit opt-out without asking for optional visual references or confirmation of the defaults. Generate and integrate enabled assets in a consistent 2D anime style with clean shapes, soft gradients, intentional shading and stylized decorative petals. Make the background and a separate transparent top overlay for this UI; do not reuse PetSim/Fake an Egg artwork. Integrate the character in the background or separately; if the background is disabled, use a separate character layer. No character means no character in any asset. The character may be male, female or otherwise as requested.
 - **Logo and icons:** when enabled, use only the transparent [Petals logo](https://github.com/levox00/ps/blob/main/assets/petals-logo-transparent.png) from the asset repository; recolor it to the chosen palette while preserving its design, geometry and transparency. If disabled, omit it, retaining a usable draggable minimized button. Always use Lucide `layout-dashboard` for Overview and `settings` for Settings; ask whether Lucide is desired for the other controls.
-- **Layout:** normal WindUI topbar controls, left sidebar, content on the right. Stack enabled layers: scaled and clipped background at the back; UI panels, controls and text above; clipped transparent, non-interactive petal overlay on top. Position enabled logo/character to avoid obstructing controls. Set actual ZIndex and stacking behavior; protect readability and mouse/touch interactions. The minimized button is draggable and uses the themed logo only when enabled.
+- **Layout:** normal WindUI topbar controls, left sidebar, content on the right. Stack enabled layers: scaled and clipped background at the back; UI panels, controls and text above; clipped transparent, non-interactive petal overlay above content; minimize, maximize and close button backgrounds and icons above the overlay. Position enabled logo/character to avoid obstructing controls. Set actual ZIndex and stacking behavior; protect readability and mouse/touch interactions. The minimized button is draggable and uses the themed logo only when enabled.
+- **Asset hosting:** Once the user approves generated or edited images, upload them to `levox00/ps/assets/<game-or-project-folder>/`, creating the folder as needed; link to the actual raw files. Approved supplied assets do not require repeated approval. Ask for repository access if unavailable. Ask for an uncertain game/project name or an authorized active MCP/session when helpful. Never embed Base64, encoded image bytes or binary image data in any script or its wrapper.
+- **Logo and minimized control dimensions:** Header logo 35 × 35 UI pixels; minimized pill 44 pixels high at scale 1, auto-width for `Petals Hub`, with the same transparent 35 × 35 logo, 17-pixel text, 36 × 36 drag region and 18 × 18 drag icon. Rounded theme-matched background and single-color outline, no rainbow; preserve image alpha and aspect ratio. On desktop and touch show the draggable control when minimized, distinguish drag from click/tap, and reopen the same instance. Preserve explicit user overrides.
 - **Features:** `[user-selected features or none]`; Overview and Settings still exist for a UI-only script.
 
 ## Overview – exact visible hierarchy
@@ -40,7 +42,7 @@ Use the fork's actual section/container API, for example `Overview:Section({Titl
 
 ## Settings – exact visible hierarchy
 
-Create three separate visible, expanded sections in the same style as Overview; they are headings, not control titles. Keep the controls nested and ordered as follows:
+Create four separate visible, expanded sections in the same style as Overview; they are headings, not control titles. Keep the controls nested and ordered as follows:
 
 ```text
 Settings [tab: settings]
@@ -49,6 +51,9 @@ Settings [tab: settings]
 │  ├─ Show Decorative Overlay [toggle; default on, when overlay exists]
 │  ├─ Background image transparency [slider]
 │  └─ UI surface transparency [slider]
+├─ Performance [section heading]
+│  ├─ Performance Mode [toggle; default off]
+│  └─ Performance Strength [integer slider; 1–4, default 1]
 ├─ Diagnostics [section heading]
 │  ├─ Copy Full Debug Report [button]
 │  ├─ Save Debug Report to File [button]
@@ -58,7 +63,9 @@ Settings [tab: settings]
    └─ Stop and Close Hub [button]
 ```
 
-Use separate section objects such as `Settings:Section({Title = "Appearance", Opened = true, Box = false})` and add each slider to its section rather than to the tab. Create `Diagnostics` and `Session` similarly and place their controls within them. Do not hide these headings or require opening a collapsed section to discover its controls. Only add game-specific session actions if requested or already present in an existing project.
+Use separate section objects such as `Settings:Section({Title = "Appearance", Opened = true, Box = false})` and add each slider to its section rather than to the tab. Create `Performance`, `Diagnostics` and `Session` similarly and place their controls within them. Do not hide these headings or require opening a collapsed section to discover its controls. Only add game-specific session actions if requested or already present in an existing project.
+
+The Performance controls are mandatory even for UI-only scripts. Identify the game and inspect its real local cosmetic objects; if necessary request an authorized game MCP/session instead of inventing paths. Strength 1 reduces a few nonessential particles; 2 also reduces other visual effects; 3 adds decorative textures/materials; 4 applies the broadest verified local visual simplifications, including suitable decorative meshes and nonessential UI. Preserve essential gameplay, collision, controls and indicators. Use reversible local changes, restore only owned changes on disable/strength change/cleanup, handle streamed objects, and persist validated settings. Do not claim FPS improvement without measurement.
 
 The two visibility toggles are independent and default to on. Hide or restore only their own layer, preserving its prior transparency; persist the choices. Omit the corresponding toggle if that asset was explicitly omitted.
 
