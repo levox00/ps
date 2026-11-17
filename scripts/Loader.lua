@@ -13,6 +13,7 @@ local SCRIPT_URLS = {
     PetSim99 = "https://raw.githubusercontent.com/levox00/ps/main/scripts/PetSim99.lua",
     FakeAnEgg = "https://raw.githubusercontent.com/levox00/ps/main/scripts/Fake%20and%20Egg.lua",
     ThrowFoodForAnimals = "https://raw.githubusercontent.com/levox00/ps/main/scripts/Throw%20Food%20For%20Animals.lua",
+    ThrowASeed = "https://raw.githubusercontent.com/levox00/ps/main/scripts/Throw%20A%20Seed.lua",
 }
 
 -- The URL is editable above and exposed to this executor session for continuation.
@@ -27,6 +28,7 @@ local MAIN_PLACES = {
     [8737899170] = "PetSim99",
     [FAKE_AN_EGG_PLACE_ID] = "FakeAnEgg",
     [THROW_FOOD_PLACE_ID] = "ThrowFoodForAnimals",
+    [129081220403721] = "ThrowASeed",
 }
 
 local GAMES = {}
