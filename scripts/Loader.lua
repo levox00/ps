@@ -6,6 +6,8 @@ local FAKE_AN_EGG_PLACE_ID = 97289366402005
 local THROW_FOOD_PLACE_ID = 120219252362013
 local ARENA_SNIPER_PLACE_ID = 122446657157717
 local ARENA_SNIPER_UNIVERSE_ID = 9534705677
+local RIVALS_PLACE_ID = 17625359962
+local RIVALS_UNIVERSE_ID = 6035872082
 local SCRIPT_URLS = {
     BreakAndStealAnEgg = "https://raw.githubusercontent.com/levox00/ps/main/scripts/Break%20and%20Steal%20an%20Egg.lua",
     BladeBall = "https://raw.githubusercontent.com/levox00/ps/main/scripts/BladeBall.luau",
@@ -14,6 +16,7 @@ local SCRIPT_URLS = {
     FakeAnEgg = "https://raw.githubusercontent.com/levox00/ps/main/scripts/Fake%20and%20Egg.lua",
     ThrowFoodForAnimals = "https://raw.githubusercontent.com/levox00/ps/main/scripts/Throw%20Food%20For%20Animals.lua",
     ThrowASeed = "https://raw.githubusercontent.com/levox00/ps/main/scripts/Throw%20A%20Seed.lua",
+    Rivals = "https://raw.githubusercontent.com/levox00/ps/main/scripts/Rivals.lua",
 }
 
 -- The URL is editable above and exposed to this executor session for continuation.
@@ -29,6 +32,7 @@ local MAIN_PLACES = {
     [FAKE_AN_EGG_PLACE_ID] = "FakeAnEgg",
     [THROW_FOOD_PLACE_ID] = "ThrowFoodForAnimals",
     [129081220403721] = "ThrowASeed",
+    [RIVALS_PLACE_ID] = "Rivals",
 }
 
 local GAMES = {}
@@ -82,7 +86,9 @@ end
 
 if not game:IsLoaded() then game.Loaded:Wait() end
 -- Sniper Arena moves between several places in the same universe.
-local directUrl = GAMES[game.PlaceId] or (game.GameId == ARENA_SNIPER_UNIVERSE_ID and SCRIPT_URLS.ArenaSniper)
+local directUrl = GAMES[game.PlaceId]
+    or (game.GameId == ARENA_SNIPER_UNIVERSE_ID and SCRIPT_URLS.ArenaSniper)
+    or (game.GameId == RIVALS_UNIVERSE_ID and SCRIPT_URLS.Rivals)
 if directUrl then
     return execute(get(directUrl, "mapped script"), directUrl)
 end
